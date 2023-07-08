@@ -118,10 +118,13 @@ const highlighterRemover = (className) => {
 btn.addEventListener("click", async (e) => {
   let writingArea = document.getElementById("text-input").value;
 
-  const payload = JSON.stringify(writingArea);
-  await fetch("http://localhost:3000/editor", {
+  const payload = {
+    text: writingArea,
+  };
+  await fetch("http://localhost:3000/api/editor", {
+    mode: "no-cors",
     method: "POST",
-    body: payload,
+    body: JSON.stringify(payload),
     headers: {
       "content-type": "application/json",
     },
