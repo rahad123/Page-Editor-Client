@@ -108,9 +108,12 @@
         </div>
       </div>
       <div>
-        <input type="text" id="text-input" />
+        <form onsubmit="return false">
+          <input type="text" name="text" id="text-input" />
+
+          <button type="submit" class="btn">SAVE</button>
+        </form>
       </div>
-      <button type="submit" class="btn">SAVE</button>
     </div>
     <!--Script-->
     <script src="./js/PageEditor.js"></script>
