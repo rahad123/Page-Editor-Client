@@ -8,6 +8,7 @@ let spacingButtons = document.querySelectorAll(".spacing");
 let formatButtons = document.querySelectorAll(".format");
 let scriptButtons = document.querySelectorAll(".script");
 let btn = document.querySelector(".btn");
+let frm = document.querySelector("form");
 
 //List of fontlist
 let fontList = [
@@ -114,16 +115,17 @@ const highlighterRemover = (className) => {
   });
 };
 
-btn.addEventListener("click", async (e) => {
-  let writingArea = document.getElementById("text-input").value;
+frm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const fromData = new FormData(frm);
+  const res = Object.fromEntries(fromData);
+  const payload = JSON.stringify(res);
+  console.log(payload);
 
-  const payload = {
-    text: writingArea,
-  };
   await fetch("http://localhost:3000/api/editor", {
     mode: "no-cors",
     method: "POST",
-    body: JSON.stringify(payload),
+    body: payload,
     headers: {
       "content-type": "application/json",
     },
